@@ -1,0 +1,38 @@
+.bg-black {
+    background-color: #000;
+}
+.console {
+    /* min-height: 300px;
+    max-height: 300px; */
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    cursor: text;
+    padding: 1rem 0rem 0rem 0rem;
+}
+.line-text {
+    min-width: 100%;
+}
+.line {
+    margin: 0px;
+    margin-right: .2rem;
+}
+.color-white {
+    color: #fff;
+}
+.c-align {
+    text-align: center;
+}
+.outline-black {
+    outline: #000;
+}
+.center-vert {
+    display: flex;
+    align-content: center;
+}
+.color-green {
+    color: rgb(153, 243, 18);
+}
+.color-blue {
+    color: blue;
+}
