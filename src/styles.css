@@ -9,6 +9,9 @@
     overflow-x: hidden;
     cursor: text;
     padding: 1rem 0rem 0rem 0rem;
+    /* animation:  */
+    /* typing 3.5s steps(40, end), */
+    /* blink-caret .7s step-end infinite; */
 }
 .line-text {
     min-width: 100%;

@@ -1,14 +1,16 @@
 import React, { Component } from "react";
-// import ConsoleLine from "./consoleLine";
 
 class Console extends Component {
   state = {
     editablePara: [true, true],
     allLines: [],
-    currentLine: ""
+    currentLine: "",
+    stack: [],
+    counter: 0
   };
+
   componentWillMount() {
-    let allLines = this.state.allLines;
+    let allLines=[];// = this.state.allLines;
     allLines.push(
       <div id="line" className="center-vert">
         <p className="line">></p>
@@ -17,32 +19,23 @@ class Console extends Component {
           contentEditable={true}
           onKeyDown={this.keyPressed}
           className="outline-black color-green line-text line"
-        > </p>
+        >  </p>
       </div>
     );
     this.setState({
       allLines: allLines
     });
   }
-  // componentDidMount() {
-  // this.setCursor();
-  // }
-  // task = () => {
-  //   this.setCursor();
-  // };
+
   keyPressed = event => {
-    // console.log(event.keyCode);
     let keyCode = event.keyCode;
-    // console.log(window.getSelection());
-    // console.log(keyCode);
+    let target = event.target;
+    let stack = this.state.stack;
+    let counter = this.state.counter;
     if (keyCode === 13) {
       event.preventDefault();
-      // console.log("enter pressed");
-      // console.log(
-      event.target.contentEditable = false;
-      event.target.id = "inactive";
-      // );
-      // console.log(event.target);
+      target.contentEditable = false;
+      target.id = "inactive";
       let allLines = this.state.allLines;
       let currentLine = (
         <div id="line" className="center-vert">
@@ -56,45 +49,54 @@ class Console extends Component {
         </div>
       );
       allLines.push(currentLine);
-      this.setState({ allLines: allLines });
-      // this.task();
+      let content = target.textContent.trim();
+      if(content!=='') {
+        stack.push(content);
+        this.setState({stack: stack, counter: stack.length});
+      }
+      this.setState({ allLines: allLines});
     } else if (keyCode === 9) {
+        event.preventDefault();
+    }
+    else if (keyCode === 38) {
       event.preventDefault();
-      // console.log(event.target.textContent);
-      //   this.setState({ currentLine: this.currentLine + "    " });
+      if(counter > 0) {
+        target.textContent = stack[counter-1];
+        this.setState({counter: counter-1})
+      }
+    }
+    else if(keyCode === 40) {
+      event.preventDefault();
+      if(counter < (stack.length-1)) {
+        console.log('updated');
+        target.textContent = stack[counter+1];
+        this.setState({counter: counter+1});
+      }
+      else if(counter === (stack.length-1)) {
+        console.log('executed');
+        target.textContent = ' ';
+        this.setState({counter: stack.length});
+      }
     }
   };
   setCursor = () => {
     let el = document.getElementById("active");
     let range = document.createRange();
     let sel = window.getSelection();
-    // console.log(el.childNodes[0]);
-    // if (el && el.childNodes) {
-    //   if(el.childNodes[0])
-    //   {range.setStart(el.childNodes[0], el.childNodes[0].length);}
-    //   else {
-    //     range.setStart(el.childNodes[0], 0);
-    //   }
     range.setStart(el.childNodes[0], el.childNodes[0].length);
-    // range.setEndAfter(el);
     range.collapse(true);
     sel.removeAllRanges();
     sel.addRange(range);
     el.focus();
-    // this.setState({ flag: 0 });
   };
   componentDidUpdate() {
     this.setCursor();
   }
   render() {
     let allLines = this.state.allLines;
+    console.log(this.state.stack);
+    console.log(this.state.counter);
     return (
-      //   <div className="bg-black console">
-      //     <p className="color-white c-align">Welcome to the Console</p>
-      //     <p contentEditable={true} className="color-white outline-black">
-      //       >
-      //     </p>
-      //   </div>
       <div className="bg-black console color-white" onClick={this.setCursor}>
         {allLines}
       </div>
