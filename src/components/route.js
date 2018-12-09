@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import React, { Component } from "react";
-import Dashboard from './dashboard';
+import Dashboard from './dashboard/dashboard';
 
 class Routes extends Component {
   render() {

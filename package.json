@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.6.1",
+    "@material-ui/icons": "^3.0.1",
+    "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
@@ -12,6 +15,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "postbuild": "cd build;cp ./index.html 200.html;rm -f static/js/*.js.map;",
+    "deploy": "cd build/static/js;rm *.map;cd ../../../;",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

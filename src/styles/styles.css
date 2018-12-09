@@ -1,0 +1,427 @@
+/* poppins-regular - latin */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/poppins-v5-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local("Poppins Regular"), local("Poppins-Regular"),
+    url("../fonts/poppins-v5-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/poppins-v5-latin-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/poppins-v5-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../fonts/poppins-v5-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../fonts/poppins-v5-latin-regular.svg#Poppins") format("svg"); /* Legacy iOS */
+}
+/* ibm-plex-mono-regular - latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/ibm-plex-mono-v3-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('IBM Plex Mono'), local('IBMPlexMono'),
+       url('../fonts/ibm-plex-mono-v3-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/ibm-plex-mono-v3-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/ibm-plex-mono-v3-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/ibm-plex-mono-v3-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/ibm-plex-mono-v3-latin-regular.svg#IBMPlexMono') format('svg'); /* Legacy iOS */
+}
+
+html {
+  overflow-x: hidden;
+}
+html,
+body {
+  margin: 0px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* GENERAL */
+/* colors */
+.bg-black {
+  background-color: #000;
+}
+.bg-grey {
+  background-color: grey;
+}
+.outline-black {
+  outline: #000;
+}
+.color-white {
+  color: #fff;
+}
+.color-greyish-white {
+  color: #ddd;
+} 
+.color-green {
+  color: rgb(153, 243, 18);
+}
+.color-red {
+  color: red;
+}
+.color-yellow {
+  color: yellow;
+}
+.color-theme {
+  color: #7926f6 !important;
+}
+.color-black {
+  color: #1e1e1e !important;
+}
+
+/* property-alignment */
+.c-align {
+  text-align: center;
+}
+.center-vert {
+  display: flex;
+  align-content: center;
+}
+.marg-auto {
+  margin: 0 auto !important;
+}
+.marg-zero {
+  margin: 0;
+}
+.mtop-half {
+  margin-top: 0.5rem !important;
+}
+.mtop-one {
+  margin-top: 1rem !important;
+}
+.mtop-two {
+  margin-top: 2rem !important;
+}
+.mtop-four {
+  margin-top: 5rem !important;
+}
+.mright-one {
+  margin-right: 1rem !important;
+}
+.mright-two {
+  margin-right: 2rem !important;
+}
+.mright-half {
+  margin-right: 1rem;
+}
+.mleft-half {
+  margin-left: 0.5rem !important;
+}
+
+/* property-font */
+.f-bold {
+  font-weight: bold;
+}
+
+
+/* DASHBOARD */
+.dashboard {
+  
+}
+.line-img {
+  /* position: fixed; */
+  z-index: -1;
+  position: absolute;
+  width: 1400px;
+}
+/* INTRO */
+.intro {
+  padding: 3rem 3rem 3rem 3rem;
+  margin: 0;
+  min-height: 100vh;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* align-content: center; */
+}
+.intro-heading > p {
+  margin: 0;
+  font-size: 5em;
+  font-weight: bold;
+  padding: 0;
+  /* font-size: px; */
+}
+.intro-text {
+    width: 50%;
+}
+.intro-text>p {
+    text-align: left;
+    font-size: 20px;
+}
+.intro-text > div > p {
+  margin: 0;
+  font-size: 20px;
+}
+.join-btn:hover {
+    color: #fff !important;
+    background-color: #7926f6 !important;
+}
+.join-btn {
+  text-transform: none !important;
+  border: 3px solid #7926f6 !important;
+  border-radius: 50px !important;
+  color: #7926f6 !important;
+  width: 9rem;
+  font-weight: bold !important;
+  margin-top: 2rem !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 18px !important;
+  background-color: #fff !important;
+}
+.img-search-grid {
+    text-align: center;
+}
+.intro-img-search {
+    width: 40em;
+    /* text-align: right; */
+    /* float: right; */
+    /* margin: 0 auto; */
+    /* text-align: center; */
+}
+
+/* WORKSPACE */
+.workspace {
+  padding: 5rem 3rem;
+}
+
+/* Console */
+
+.console-workspace-xs {
+  display: none;
+}
+
+.section-console {
+
+}
+.console-top {
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 1rem;
+}
+.console {
+  height: 590px;
+    /* max-height: 300px; */
+  /* height: 300px; */
+  /* overflow-y: auto; */
+  overflow-x: hidden;
+  overflow-y: auto;
+  cursor: text;
+  padding: 1rem 1rem 0rem 0rem;
+  font-family: 'IBM Plex Mono';
+  /* animation:  */
+  /* typing 3.5s steps(40, end), */
+  /* blink-caret .7s step-end infinite; */
+}
+.line-text {
+  overflow-x: hidden;
+}
+.line {
+  margin: 0px;
+  margin-right: 0.2rem;
+  padding: 0 0 0 1rem;
+}
+
+/* Workspace-right-text */
+.workspace-right-text {
+  width: 50%;
+  /* float: right; */
+  margin: 0 auto;
+  min-height: 600px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.workspace-right-text>img {
+  width: 20em;
+}
+.help-text {
+  font-family: 'IBM Plex Mono';
+  background-color: rgba(0,0,0,0.08);
+  padding: 4px 1rem;
+}
+
+/* FOOTER */
+.footer {
+  background-color: #7926f6;
+  padding: 3px 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-img {
+  width: 2em;
+  margin-right: 8px;
+}
+
+@media only screen and (max-width: 1500px) {
+  .img-search-grid {
+    text-align: center;
+  }
+  .intro-text {
+    width: 65%;
+  }
+  .line-img {
+    width: 1200px;
+  }
+  .console {
+    height: 500px;
+  }
+  .workspace-right-text {
+    min-height: 540px;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .intro-img-search {
+    width: 35em;
+    /* height: 30em; */
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .intro-img-search {
+    /* width: 25em; */
+    /* height: 30em; */
+  }
+  .intro-text {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .intro-img-search {
+    width: 35em;
+    /* height: 30em; */
+  }
+  .intro {
+    min-height: unset;
+  }
+  .line-img {
+    width: 1100px;
+  }
+  .intro-heading>p {
+    font-size: 4em;
+  }
+  .intro-text>p,.intro-text>div>p {
+    font-size: 18px;
+  }
+  .intro-img-search {
+    width: 30em;
+  }  
+}
+
+@media only screen and (max-width: 1100px) {
+  .line-img {
+    width: 1050px;
+  }
+  .intro-img-search {
+    width: 27em;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .line-img {
+    width: -webkit-fill-available;
+  }
+  .intro-heading>p {
+    font-size: 3rem;
+  }
+  .intro-text>p,.intro-text>div>p {
+    font-size: 16px;
+  }
+  .join-btn {
+    font-size: 16px !important;
+  }
+}
+
+@media only screen and (max-width: 959px) {
+  .line-img {
+    display: none;
+  }
+  .workspace-right-text {
+    min-height: unset;
+  }
+  .intro-text {
+    width: 80%;
+  }
+  .img-search-grid {
+    text-align: center;
+  }
+  .workspace {
+    padding: 4rem;
+    /* display: flex; */
+    /* flex-wrap: wrap-reverse; */
+  }
+  .intro-img-search {
+    width: 60%;
+  }
+  .console-workspace-xs {
+    display: block;
+  }
+  .console-workspace-lg {
+    display: none;
+  }
+  .workspace-right-text>img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .intro-img-search {
+    /* margin-top: -50px; */
+  }
+  .workspace {
+    padding: 2rem;
+  }
+  .workspace-right-text {
+    min-height: unset;
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .intro-text {
+    width: 100%;
+  }
+  .intro-img-search {
+    width: 100%;
+    /* margin-top: -100px; */
+  }
+  .workspace-right-text {
+    width: 80%;
+    /* margin-top: -100px; */
+  }
+  .intro-text>p,.intro-text>div>p {
+    font-size: 15px;
+  }
+  .join-btn {
+    font-size: 14px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .intro {
+    padding: 1rem 2rem;
+  }
+  .intro-img-search {
+    /* margin-top: -100px; */
+  }
+  .console {
+    height: 400px;
+  }
+  .workspace {
+    padding: 1rem;
+  }
+  .join-btn-div {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .intro-heading>p {
+    font-size: 2.5rem;
+  }
+}
