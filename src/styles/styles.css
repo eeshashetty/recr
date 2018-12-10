@@ -29,6 +29,17 @@
        url('../fonts/ibm-plex-mono-v3-latin-regular.svg#IBMPlexMono') format('svg'); /* Legacy iOS */
 }
 
+/* password-font */
+
+@font-face {
+  font-family: 'password';
+  src: url('../fonts/password.woff2') format('woff2'),
+       url('../fonts/password.woff') format('woff'),
+       url('../fonts/password.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   overflow-x: hidden;
 }
@@ -59,16 +70,28 @@ body {
   color: rgb(153, 243, 18);
 }
 .color-red {
-  color: red;
+  color: rgb(255,69,58);
 }
 .color-yellow {
-  color: yellow;
+  color: rgb(255,214,10);
+}
+.color-circle-green {
+  color: rgb(50, 215, 75);
 }
 .color-theme {
   color: #7926f6 !important;
 }
+.color-orange {
+  color: orange;
+}
+.color-pink {
+  color: pink;
+}
+.color-blue {
+  color: blue;
+}
 .color-black {
-  color: #1e1e1e !important;
+  color: black !important;
 }
 
 /* property-alignment */
@@ -109,7 +132,9 @@ body {
 .mleft-half {
   margin-left: 0.5rem !important;
 }
-
+.hide {
+  display: none;
+}
 /* property-font */
 .f-bold {
   font-weight: bold;
@@ -138,7 +163,7 @@ body {
 .intro-heading > p {
   margin: 0;
   font-size: 5em;
-  font-weight: bold;
+  font-weight: 800;
   padding: 0;
   /* font-size: px; */
 }
@@ -200,6 +225,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 2px 1rem;
+  border-radius: 5px 5px 0 0;
 }
 .console {
   height: 590px;
@@ -214,14 +240,40 @@ body {
   /* animation:  */
   /* typing 3.5s steps(40, end), */
   /* blink-caret .7s step-end infinite; */
+  border-radius: 0 0 5px 5px;
+}
+.console::-webkit-scrollbar {
+  width: 10px;
+}
+.console::-webkit-scrollbar-thumb {
+  background-color: #7926f6;
+  cursor: pointer !important;
+}
+.console::-webkit-scrollbar-thumb:hover {
+  opacity: 0.9;
 }
 .line-text {
   overflow-x: hidden;
 }
 .line {
   margin: 0px;
-  margin-right: 0.2rem;
+  margin-right: 0.1rem;
   padding: 0 0 0 1rem;
+}
+.password {
+  /* -webkit-text-security: disc;
+  -moz-text-security: disc;
+  -text-security: disc; */
+  /* height:20px; width:100px; */
+  /* -webkit-appearance: textfield; */
+  /* padding: 1px; */
+  /* background-color: white; */
+  /* border: 2px inset; */
+  /* -webkit-user-select: text; */
+  font-family: 'password';
+  display: flex;
+  align-items: center;
+  /* cursor: auto; */
 }
 
 /* Workspace-right-text */
