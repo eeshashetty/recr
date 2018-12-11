@@ -44,9 +44,48 @@ class SelectDomain extends Component {
         .then(res => {
             let data = res.data;
             console.log(data);
+            if(data.success) {
+                let name = localStorage.getItem('name');
+                this.setState({techSubmitted: false, 
+                    designSubmitted: false,
+                    mgtSubmitted: false});
+                let result = data.result;
+                let status, domain;
+                if(result && result.length>0 ) {
+                    for(let i=0; i<result.length; i++) {
+                        domain = result[i].For;
+                        // domainsAttempted.push(domain);
+                        status = result[i].attempt.submit_status;
+                        switch (domain) {
+                            case 'technical':
+                                this.setState({techSubmitted: status});
+                                break;
+                            case 'design':
+                                this.setState({designSubmitted: status});
+                                break;
+                            case 'management':
+                                this.setState({mgtSubmitted: status});
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                name = name.trim();
+                name = name.split(" ")[0];
+                this.setState({openSuccessSnackbar: true, 
+                    msgSnackbar:`Welcome ${name} ! Please choose a domain to procceed...`
+                });
+                
+            }
+            else {
+                this.setState({openErrorSnackbar: true, msgSnackbar: data.message});
+            }
         })
         .catch(err=> {
-            console.log(err);
+            this.setState({openErrorSnackbar: true, 
+                msgSnackbar: `Could not get your attempts. 
+                Please check your internet connection and try again.`});
         });
     }
 
@@ -126,7 +165,7 @@ class SelectDomain extends Component {
                 <Snackbar
 			  	  anchorOrigin={{ vertical, horizontal }}
                   open={this.state.openErrorSnackbar}
-                  autoHideDuration={4000}
+                //   autoHideDuration={10000}
                   className="snackbar-error"
 		          message={this.state.msgSnackbar}
 		          onClose={this.onClose}
@@ -134,8 +173,8 @@ class SelectDomain extends Component {
                 <Snackbar
 			  	  anchorOrigin={{ vertical, horizontal }}
                   open={this.state.openSuccessSnackbar}
+                  autoHideDuration={10000}
                   className="snackbar-success"
-                  autoHideDuration={4000}
 		          message={this.state.msgSnackbar}
 		          onClose={this.onClose}
 		        />

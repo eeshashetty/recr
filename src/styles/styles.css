@@ -338,7 +338,7 @@ span {
 /* snackbar */
 
 .snackbar-error>div {
-  background-color: #ef0303 !important;
+  background-color: #e01818 !important;
 }
 .snackbar-success>div {
   background-color: green !important;
