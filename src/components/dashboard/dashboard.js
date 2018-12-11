@@ -22,7 +22,7 @@ class Dashboard extends Component {
     <div className="dashboard">
       <img src={line} className="line-img"/>
       <Intro />
-      <Workspace/>
+      <Workspace history={this.props.history}/>
       <Footer/>
     </div>);
   }

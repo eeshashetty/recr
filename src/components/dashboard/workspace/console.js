@@ -3,6 +3,7 @@ import FiberManualRecord from '@material-ui/icons/FiberManualRecord';
 import InfoOutlined from '@material-ui/icons/InfoOutlined';
 // import { element } from "prop-types";
 import axios from 'axios';
+import urls from '../../common/urls';
 
 const acm = `
        d8888  .d8888b.  888b     d888 
@@ -15,7 +16,7 @@ const acm = `
 d88P     888  "Y8888P"  888       888 
 `
 
-const BASE_URL = 'http://still-wildwood-25746.herokuapp.com';
+const BASE_URL = urls.BASE_URL;
 
 class Console extends Component {
   state = {
@@ -35,17 +36,16 @@ class Console extends Component {
   };
 
   componentWillMount() {
-    // console.log('component will mount executed');
     let allLines=[];
     allLines.push(
       <div>
         <div id="console-heading" className="color-greyish-white c-align" >
           <pre>{acm}</pre>
-          <p className="mtop-two">Welcome to ACM Recruitments</p>
+          <p id="welcome-line" className="mtop-two">{localStorage.getItem('name')?`Welcome ${localStorage.getItem('name')}`:'Welcome to ACM Recruitments'}</p>
         </div>
-        <div id="line" className="center-vert">
+        <div id="will-mount-line" className="center-vert">
           <div className="center-vert">
-            <p className="line color-greyish-white">{this.state.regno? this.state.regno: '18XXXdddd'}</p>
+            <p className="line color-greyish-white">{localStorage.getItem('regno')? localStorage.getItem('regno'): 'user'}</p>
             <p className="marg-zero color-orange">@acm:</p>
             <p className="marg-zero color-blue">~</p>
             <p className="marg-zero color-greyish-white" >$</p>
@@ -65,18 +65,28 @@ class Console extends Component {
     });
   }
 
-  showResponse = (name, regno, type, msg) => {
+  // show response of login
+
+  showResponse = (type, msg) => {
     console.log('inside showresponse')
     let allLines = this.state.allLines;
-    // let respLine;
-    if(type==='error') {
-      // this.clear();
-      let errLine = (
-        <div id="response" className="center-vert">
+    if(type==='warning') {
+      let warnLine = (
+        <div id="response" className="mtop-one mbot-one center-vert">
           <div className="center-vert">
-            {/* <p className="line color-greyish-white">Please wait...</p> */}
-            {/* <p className="marg-zero color-orange">@acm:</p> */}
-            {/* <p className="marg-zero color-blue">~</p> */}
+            <p className="marg-zero mright-one color-greyish-white" >$</p>
+            <p className="marg-zero color-red">{msg}</p>
+          </div>
+        </div>
+      );
+      allLines.push(warnLine);
+      this.setState({allLines: allLines});
+      this.handleContent('random');
+    }
+    if(type==='error') {
+      let errLine = (
+        <div id="response" className="mtop-one mbot-one center-vert">
+          <div className="center-vert">
             <p className="marg-zero color-greyish-white" >$</p>
           </div>
           <p
@@ -96,10 +106,6 @@ class Console extends Component {
       el.contentEditable = false;
       el.id = "inactive";
       parentEl.id="not-loading";
-      // console.log(document.getElementsByName('loading'))
-      // console.log(document.getElementById('loading').childNodes[1]);
-      // console.log(document.getElementById('loading').childNodes.item('active'));
-      // console.log(document.getElementById('active'));
       this.handleContent('random');
       parentEl = document.getElementById('response');
       el = document.getElementById('response').childNodes[1];
@@ -108,8 +114,17 @@ class Console extends Component {
       parentEl.id="a-response";
       this.setCursor();
     }
-    // allLines.push(respLine);
+    if(type==='success') {
+      let welcomeEl = document.getElementById('welcome-line');
+      let willMountEl = document.getElementById('will-mount-line');
+      welcomeEl.textContent = `Welcome ${this.state.name}`;
+      willMountEl.childNodes[0].classList.add('marg-auto');
+      willMountEl.childNodes[0].textContent = `Press Enter to continue...`;
+      this.clear();
+    }
   }
+
+  // login
 
   postData = () => {
     this.setState({typeLogin: false, typeReg: false, typePass: false});
@@ -125,9 +140,6 @@ class Console extends Component {
       <div id="loading" className="center-vert">
         <div className="center-vert">
           <p className="line color-greyish-white">Please wait...</p>
-          {/* <p className="marg-zero color-orange">@acm:</p> */}
-          {/* <p className="marg-zero color-blue">~</p> */}
-          {/* <p className="marg-zero color-greyish-white" >$</p> */}
         </div>
         <p
           id="active"
@@ -145,25 +157,21 @@ class Console extends Component {
     .then(response => {
         let data = response.data;
         console.log(data);
-        // this.setState({response: data, name: data.name, regno: '17BCE0872'});
-        // this.setState({allLines: allLines});
         if(data.success) {
-          this.showResponse(data.name, data.regno, 'success');
-          // this.setState({regno: data.regno, name: data.name});
-            // this.setState({openSuccessSnackbar: true, msgSnackbar: `Congratulations you are successfully registered. 
-            // We'll be in touch with you shortly.`, loading: false, name: '', reg: '', email: '', password: '', phone: '', gender: ''});
+          this.setState({name: data.name, regno: data.regno});
+          localStorage.setItem('token',data.token);
+          localStorage.setItem('name', data.name);
+          localStorage.setItem('regno', data.regno);
+          this.showResponse('success', 'Welcome');
         }
         else {
-          this.showResponse('', '', 'error' , data.message);
-          // this.setState({openErrorSnackbar: true, msgSnackbar: data.message, loading: false});
+          this.showResponse('error' , data.message);
         }
-    }, ()=>  {
-      this.setState({name: data.name, regno: '17BCE0872'});
     })
     .catch(error => {
-        // this.setState({openErrorSnackbar: true, 
-            // msgSnackbar: 'Could not register. Please check your internet connection and try again', loading: false});
-        this.showResponse('','','error', 'Could not login. Please check your internet connection and try again');
+        this.showResponse('error', 
+        'Could not login. Please check your internet connection and try again');
+        console.log(error);
     });
 
     allLines.push(loadingLine);
@@ -173,41 +181,44 @@ class Console extends Component {
     // this.handleContent('random')
   }
 
+  // display help
+
   displayHelp = () => {
     let allLines = this.state.allLines;
     let currentLine = (
-      <div id="help" className="">
-        <div className="line center-vert">
-          <p className="marg-zero color-green">{'help: '}</p>
-          <p className="marg-zero color-greyish-white">display all the commands</p>
+      <div id="help mtop-one" className="">
+        <div className="line center-vert mtop-one">
+          <p className="marg-zero color-green mright-half">help:</p>
+          <p className="marg-zero color-greyish-white">to list all the commands</p>
         </div>
         <div className="line center-vert">
-          <p className="marg-zero color-green">{'login: '}</p>
+          <p className="marg-zero color-green mright-half">clear:</p>
+          <p className="marg-zero color-greyish-white">to clear the screen</p>
+        </div>
+        <div className="line center-vert">
+          <p className="marg-zero color-green mright-half">login:</p>
           <p className="marg-zero color-greyish-white">to log in</p>
         </div>
         <div className="line center-vert">
-          <p className="marg-zero color-green">{'reset password: '}</p>
+          <p className="marg-zero color-green mright-half">logout:</p>
+          <p className="marg-zero color-greyish-white">to log out</p>
+        </div>
+        <div className="line center-vert">
+          <p className="marg-zero mright-half color-green">reset password:</p>
           <p className="marg-zero color-greyish-white">to reset password</p>
         </div>
         <div className="line center-vert">
-          <p className="marg-zero color-green">{'ls quiz: '}</p>
+          <p className="marg-zero color-green mright-half">ls quiz:</p>
           <p className="marg-zero color-greyish-white">to attempt quiz</p>
         </div>
-        <div className="line center-vert">
-          <p className="marg-zero color-green">{'login: '}</p>
+        {/* <div className="line center-vert">
+          <p className="marg-zero color-green mright-half">login:</p>
           <p className="marg-zero color-greyish-white">to log in</p>
-        </div>
-        <div className="line center-vert">
-          <p className="marg-zero color-green">{'ls result: '}</p>
+        </div> */}
+        <div className="line center-vert mbot-one">
+          <p className="marg-zero color-green mright-half">{'ls result: '}</p>
           <p className="marg-zero color-greyish-white">to see the result</p>
         </div>
-        {/* <p
-          id="active"
-          contentEditable={true}
-          spellCheck={false}
-          onKeyDown={this.keyPressed}
-          className="outline-black color-green line-text line"
-        > </p> */}
       </div>
     );
     allLines.push(currentLine);
@@ -215,13 +226,46 @@ class Console extends Component {
     this.handleContent('random');
   }
 
+  // redirect to quiz page
+
+  listQuiz = () => {
+    if(localStorage.getItem('token')) {
+      window.open('/selectDomain', '_blank');
+      window.focus();
+    }
+    else {
+      this.showResponse('warning', 'Please login to continue with quiz');
+    }
+  }
+
+  // logout
+
+  logout = () => {
+    if(localStorage.getItem('token')) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('name');
+      localStorage.removeItem('regno');
+      let welcomeEl = document.getElementById('welcome-line');
+      let willMountEl = document.getElementById('will-mount-line');
+      welcomeEl.textContent = `Welcome to ACM Recruitments`;
+      willMountEl.childNodes[0].classList.add('marg-auto');
+      willMountEl.childNodes[0].textContent = `You are successfully logged out...`;
+      this.clear();
+    }
+    else {
+      this.showResponse('warning', 'You are already logged out!');
+    }
+  }
+
+  // handle content
+
   handleContent = (content,target) => {
     let stack = this.state.stack;
     let allLines = this.state.allLines;
     let currentLine = (
       <div id="line" className="center-vert">
         <div className="center-vert">
-          <p className="line color-greyish-white">{this.state.regno? this.state.regno: '18XXXdddd'}</p>
+          <p className="line color-greyish-white">{localStorage.getItem('regno')? localStorage.getItem('regno'): 'user'}</p>
           <p className="marg-zero color-orange">@acm:</p>
           <p className="marg-zero color-blue">~</p>
           <p className="marg-zero color-greyish-white" >$</p>
@@ -251,12 +295,23 @@ class Console extends Component {
         case 'help':
           this.displayHelp();
           break;
-        case 'login':
-          this.login('reg');
-          this.setState({typeLogin: true, typeReg: true});
-          break;
         case 'clear':
           this.clear();
+          break;
+        case 'ls quiz':
+          this.listQuiz();
+          break;
+        case 'login':
+          if(localStorage.getItem('token')) {
+            this.showResponse('warning','You are already logged in.')
+          }
+          else {
+            this.login('reg');
+            this.setState({typeLogin: true, typeReg: true});
+          }
+          break;
+        case 'logout':
+          this.logout();
           break;
         default:
           if(this.state.typePass) {
@@ -275,7 +330,7 @@ class Console extends Component {
             }
           }
           break;
-      }      
+      }
     }
     // if(content)
   }
@@ -283,7 +338,7 @@ class Console extends Component {
   login = (type) => {
     let allLines = this.state.allLines;
     let regLine = (
-      <div id="line" className="center-vert">
+      <div id="line" className="flex-wrap center-vert">
         <p className="line color-greyish-white">> Enter your Registration Number: </p>
         <p
           id="active"
@@ -296,7 +351,7 @@ class Console extends Component {
     );
 
     let passLine = (
-      <div id="line" className="center-vert">
+      <div id="line" className="flex-wrap center-vert">
         <p className="line color-greyish-white">> Enter your Password: </p>
         <p
           id="active"
@@ -310,13 +365,19 @@ class Console extends Component {
         ></p>
       </div>
     );
-    if(type==='reg') {
-      allLines.push(regLine);
-    }
-    else if(type==='pass') {
-      allLines.push(passLine);
-    }
-    this.setState({ allLines: allLines});
+    // if(localStorage.getItem('token')) {
+    //   this.setState({typeLogin: false, typeReg: false, typePass: false});
+    //   this.showResponse('warning','You are already logged in!');
+    // }
+    // else {
+      if(type==='reg') {
+        allLines.push(regLine);
+      }
+      else if(type==='pass') {
+        allLines.push(passLine);
+      }
+      this.setState({ allLines: allLines});
+    // }
   }
 
   showPass = event => {
@@ -407,7 +468,7 @@ class Console extends Component {
   }
   render() {
     let allLines = this.state.allLines;
-    console.log(this.state.regno);
+    console.log(localStorage.getItem('regno'));
     return (
       <div className="">
         {/* <div>
