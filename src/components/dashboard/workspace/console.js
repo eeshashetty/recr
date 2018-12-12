@@ -317,8 +317,8 @@ class Console extends Component {
   // redirect to quiz page
 
   listQuiz = () => {
-    this.handleContent('random');
     if(localStorage.getItem('token')) {
+      this.handleContent('random');
       setTimeout(() => {
         window.open('/home', '_blank');
         window.focus();
