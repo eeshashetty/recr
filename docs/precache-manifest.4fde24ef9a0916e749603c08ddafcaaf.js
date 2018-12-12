@@ -100,20 +100,16 @@ self.__precacheManifest = [
     "url": "/static/media/ibm-plex-mono-v3-latin-regular.7eaa73b0.eot"
   },
   {
-    "revision": "0c3db5c13d8ffb2ddd28b9a42a59dc65",
-    "url": "/static/media/ibm-plex-mono-v3-latin-regular.0c3db5c1.woff"
-  },
-  {
     "revision": "762415236b4a11831f9fc064ea48dbdb",
     "url": "/static/media/ibm-plex-mono-v3-latin-regular.76241523.woff2"
   },
   {
-    "revision": "fc89cc270cd790199d45a4228bb4e18a",
-    "url": "/static/media/ibm-plex-mono-v3-latin-regular.fc89cc27.ttf"
+    "revision": "0c3db5c13d8ffb2ddd28b9a42a59dc65",
+    "url": "/static/media/ibm-plex-mono-v3-latin-regular.0c3db5c1.woff"
   },
   {
-    "revision": "410f53ee0685c06e5f88a99a446d81f0",
-    "url": "/static/media/password.410f53ee.woff2"
+    "revision": "fc89cc270cd790199d45a4228bb4e18a",
+    "url": "/static/media/ibm-plex-mono-v3-latin-regular.fc89cc27.ttf"
   },
   {
     "revision": "6463d901c7483d679171eabbce1e26d5",
@@ -122,6 +118,10 @@ self.__precacheManifest = [
   {
     "revision": "41c929e95539af861ca368ef1e06e91b",
     "url": "/static/media/password.41c929e9.woff"
+  },
+  {
+    "revision": "410f53ee0685c06e5f88a99a446d81f0",
+    "url": "/static/media/password.410f53ee.woff2"
   },
   {
     "revision": "d41d8cd98f00b204e9800998ecf8427e",
