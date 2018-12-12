@@ -127,9 +127,14 @@ class SelectDomain extends Component {
                         <p>You can edit your saved responses.</p>
                         <p>Once you submit your test, you cannot edit any responses.</p>
                         <p>If you forget to submit before the deadline, your last saved response will be considered for evaluation.</p>
-                        <p>It is not mandatory to answer all the questions. </p>
-                        <p className="mtop-one"><b>Technical: </b></p>
-                        <b>Note:</b> you can look up answers on the internet but make sure to be thorough with the answered topics. 
+                        <p className="marg-zero"><b><u>Technical & Management:</u></b></p>
+                        <p className="marg-zero mbot-one mtop-half">
+                        It is <b>not</b> mandatory to answer all the questions. </p>
+                        <p className="marg-zero"><b><u>Design:</u></b></p>
+                        <p className="marg-zero mbot-one mtop-half">
+                        <b>At least one</b> task is mandatory. Others are optional.</p>
+                        {/* <p className="mtop-one"><b>Technical: </b></p> */}
+                        <b><u>Note:</u></b> you can look up answers on the internet but make sure to be thorough with the answered topics. 
                         Questions related to these topics will be asked during the interview round.
                         <p className="mtop-one color-blue f-bold">Best of Luck !!</p>
 
