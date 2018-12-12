@@ -1,5 +1,5 @@
 let urls = {
-    BASE_URL: 'http://still-wildwood-25746.herokuapp.com'
+    BASE_URL: 'https://still-wildwood-25746.herokuapp.com'
 }
 
 export default urls;

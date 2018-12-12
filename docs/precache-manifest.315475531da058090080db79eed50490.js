@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/media/design.4102394e.svg"
   },
   {
-    "revision": "f7428a71077e227bc6c1",
+    "revision": "b66bcc4c32b1b24ae96c",
     "url": "/static/css/main.8c78a4c4.chunk.css"
   },
   {
@@ -64,8 +64,8 @@ self.__precacheManifest = [
     "url": "/static/media/mgt.d2d27f87.svg"
   },
   {
-    "revision": "f7428a71077e227bc6c1",
-    "url": "/static/js/main.f7428a71.chunk.js"
+    "revision": "b66bcc4c32b1b24ae96c",
+    "url": "/static/js/main.b66bcc4c.chunk.js"
   },
   {
     "revision": "329f2801ef4f51f4c7b618ce2a685af9",
@@ -100,16 +100,12 @@ self.__precacheManifest = [
     "url": "/static/media/ibm-plex-mono-v3-latin-regular.7eaa73b0.eot"
   },
   {
-    "revision": "762415236b4a11831f9fc064ea48dbdb",
-    "url": "/static/media/ibm-plex-mono-v3-latin-regular.76241523.woff2"
-  },
-  {
     "revision": "0c3db5c13d8ffb2ddd28b9a42a59dc65",
     "url": "/static/media/ibm-plex-mono-v3-latin-regular.0c3db5c1.woff"
   },
   {
-    "revision": "6463d901c7483d679171eabbce1e26d5",
-    "url": "/static/media/ibm-plex-mono-v3-latin-regular.6463d901.svg"
+    "revision": "762415236b4a11831f9fc064ea48dbdb",
+    "url": "/static/media/ibm-plex-mono-v3-latin-regular.76241523.woff2"
   },
   {
     "revision": "fc89cc270cd790199d45a4228bb4e18a",
@@ -120,15 +116,19 @@ self.__precacheManifest = [
     "url": "/static/media/password.410f53ee.woff2"
   },
   {
-    "revision": "d41d8cd98f00b204e9800998ecf8427e",
-    "url": "/static/media/password.d41d8cd9.ttf"
+    "revision": "6463d901c7483d679171eabbce1e26d5",
+    "url": "/static/media/ibm-plex-mono-v3-latin-regular.6463d901.svg"
   },
   {
     "revision": "41c929e95539af861ca368ef1e06e91b",
     "url": "/static/media/password.41c929e9.woff"
   },
   {
-    "revision": "0d9c13c017987306036f949d9950a69e",
+    "revision": "d41d8cd98f00b204e9800998ecf8427e",
+    "url": "/static/media/password.d41d8cd9.ttf"
+  },
+  {
+    "revision": "bbf20e8a4ce9b45a05d2aa433603d269",
     "url": "/index.html"
   }
 ];
