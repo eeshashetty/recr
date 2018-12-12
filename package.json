@@ -8,15 +8,15 @@
     "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-google-recaptcha": "^1.0.5",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "react-star-rating-component": "^1.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "postbuild": "cd build;cp ./index.html 200.html;rm -f static/js/*.js.map;",
-    "deploy": "cd build/static/js;rm *.map;cd ../../../;",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

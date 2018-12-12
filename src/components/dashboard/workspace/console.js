@@ -29,6 +29,7 @@ class Console extends Component {
     typeLogin: false,
     typeReg: false,
     typePass: false,
+    recoveryInProgress: false,
     regno: '',
     name: '',
     gotResponse: false,
@@ -68,7 +69,7 @@ class Console extends Component {
   // show response of login
 
   showResponse = (type, msg) => {
-    console.log('inside showresponse')
+    // console.log('inside showresponse')
     let allLines = this.state.allLines;
     if(type==='warning') {
       let warnLine = (
@@ -98,29 +99,70 @@ class Console extends Component {
           >{msg}</p>
         </div>
       );
-      let parentEl = document.getElementById('loading');
-      let el = document.getElementById('loading').childNodes[1];
-      // console.log(el);
-      allLines.push(errLine);
-      this.setState({allLines: allLines, gotResponse: true});
-      el.contentEditable = false;
-      el.id = "inactive";
-      parentEl.id="not-loading";
-      this.handleContent('random');
-      parentEl = document.getElementById('response');
-      el = document.getElementById('response').childNodes[1];
-      el.contentEditable = false;
-      el.id = "inactive";
-      parentEl.id="a-response";
-      this.setCursor();
+      let parentEl;
+      if(document.getElementById('loading')) {
+        parentEl = document.getElementById('loading');
+      }
+      if(parentEl && parentEl.childNodes && parentEl.childNodes[1]) {
+        let el = document.getElementById('loading').childNodes[1];
+        allLines.push(errLine);
+        this.setState({allLines: allLines, gotResponse: true});
+        el.contentEditable = false;
+        el.id = "inactive";
+        parentEl.id="not-loading";
+        this.handleContent('random');
+        parentEl = document.getElementById('response');
+        el = document.getElementById('response').childNodes[1];
+        el.contentEditable = false;
+        el.id = "inactive";
+        parentEl.id="a-response";
+        this.setCursor();
+      }
     }
     if(type==='success') {
       let welcomeEl = document.getElementById('welcome-line');
       let willMountEl = document.getElementById('will-mount-line');
-      welcomeEl.textContent = `Welcome ${this.state.name}`;
-      willMountEl.childNodes[0].classList.add('marg-auto');
-      willMountEl.childNodes[0].textContent = `Press Enter to continue...`;
-      this.clear();
+      if(localStorage.getItem('token')) {
+        willMountEl.childNodes[0].classList.add('marg-auto');
+        welcomeEl.textContent = `Welcome ${this.state.name}`;
+        willMountEl.childNodes[0].textContent = `Press Enter to continue...`;
+        this.clear();
+      }
+      else {
+        let successLine = (
+          <div id="response" className="mtop-one mbot-one center-vert">
+            <div className="center-vert">
+              <p className="marg-zero color-greyish-white" >$</p>
+            </div>
+            <p
+              id="active"
+              contentEditable={true}
+              spellCheck={false}
+              onKeyDown={this.keyPressed}
+              className="outline-black color-circle-green line-text line"
+            >{msg}</p>
+          </div>
+        );
+        let parentEl;
+        if(document.getElementById('loading')) {
+          parentEl = document.getElementById('loading');
+        }
+        if(parentEl && parentEl.childNodes && parentEl.childNodes[1]) {
+          let el = document.getElementById('loading').childNodes[1];
+          allLines.push(successLine);
+          this.setState({allLines: allLines, gotResponse: true});
+          el.contentEditable = false;
+          el.id = "inactive";
+          parentEl.id="not-loading";
+          this.handleContent('random');
+          parentEl = document.getElementById('response');
+          el = document.getElementById('response').childNodes[1];
+          el.contentEditable = false;
+          el.id = "inactive";
+          parentEl.id="a-response";
+          this.setCursor();
+        }
+      }
     }
   }
 
@@ -156,7 +198,7 @@ class Console extends Component {
     {headers: {'Content-Type' : 'application/json'}})
     .then(response => {
         let data = response.data;
-        console.log(data);
+        // console.log(data);
         if(data.success) {
           this.setState({name: data.name, regno: data.regno});
           localStorage.setItem('token',data.token);
@@ -171,7 +213,7 @@ class Console extends Component {
     .catch(error => {
         this.showResponse('error', 
         'Could not login. Please check your internet connection and try again');
-        console.log(error);
+        // console.log(error);
     });
 
     allLines.push(loadingLine);
@@ -181,43 +223,89 @@ class Console extends Component {
     // this.handleContent('random')
   }
 
+  recoverAccount = () => {
+    this.setState({recoveryInProgress: false});
+    let allLines = this.state.allLines;
+    
+    let loadingLine = (
+      <div id="loading" className="center-vert">
+        <div className="center-vert">
+          <p className="line color-greyish-white">Please wait...</p>
+        </div>
+        <p
+          id="active"
+          name="loading"
+          contentEditable={true}
+          spellCheck={false}
+          onKeyDown={this.keyPressed}
+          className="outline-black color-green line-text line"
+        > </p>
+      </div>
+    );
+    let stack = this.state.stack;
+    let email = stack[stack.length-1];
+    let data = {'email': email};
+    data = JSON.stringify(data);
+    // console.log(data);
+    // stack.pop();
+    // this.setState({stack: stack, counter: stack.length});
+    axios.post(`${BASE_URL}/api/user/forgotpassword`,data, 
+    {headers: {'Content-Type' : 'application/json'}})
+    .then(response=> {
+      let data = response.data;
+        // console.log(data);
+        if(data.success) {
+          this.showResponse('success', data.message);
+        }
+        else {
+          this.showResponse('error' , data.message);
+        }
+    })
+    .catch((err)=> {
+      this.showResponse('error', 
+        'Could not login. Please check your internet connection and try again');
+        // console.log(err);
+    })
+    allLines.push(loadingLine);
+  }
+
   // display help
 
   displayHelp = () => {
     let allLines = this.state.allLines;
     let currentLine = (
       <div id="help mtop-one" className="">
-        <div className="line center-vert mtop-one">
-          <p className="marg-zero color-green mright-half">help:</p>
-          <p className="marg-zero color-greyish-white">to list all the commands</p>
+        <div className="flex-wrap line center-vert mtop-one">
+          <p className="marg-zero color-green mright-half">help</p>
+          <p className="marg-zero color-greyish-white">list all the commands</p>
         </div>
-        <div className="line center-vert">
-          <p className="marg-zero color-green mright-half">clear:</p>
-          <p className="marg-zero color-greyish-white">to clear the screen</p>
+        <div className="flex-wrap line center-vert">
+          <p className="marg-zero color-green mright-half">clear</p>
+          <p className="marg-zero color-greyish-white">clear the screen</p>
         </div>
-        <div className="line center-vert">
-          <p className="marg-zero color-green mright-half">login:</p>
-          <p className="marg-zero color-greyish-white">to log in</p>
+        <div className="flex-wrap line center-vert">
+          <p className="marg-zero color-green mright-half">login</p>
+          <p className="marg-zero color-greyish-white">log in</p>
         </div>
-        <div className="line center-vert">
-          <p className="marg-zero color-green mright-half">logout:</p>
-          <p className="marg-zero color-greyish-white">to log out</p>
+        <div className="flex-wrap line center-vert">
+          <p className="marg-zero color-green mright-half">logout</p>
+          <p className="marg-zero color-greyish-white">log out</p>
         </div>
-        <div className="line center-vert">
-          <p className="marg-zero mright-half color-green">reset password:</p>
-          <p className="marg-zero color-greyish-white">to reset password</p>
+        <div className="flex-wrap line center-vert">
+          <p className="marg-zero mright-half color-green">forgot password</p>
+          <p className="marg-zero color-greyish-white">account recovery</p>
         </div>
-        <div className="line center-vert">
-          <p className="marg-zero color-green mright-half">ls quiz:</p>
-          <p className="marg-zero color-greyish-white">to attempt quiz</p>
+        <div className="flex-wrap line center-vert">
+          <p className="marg-zero color-green mright-half">attempt test</p>
+          <p className="marg-zero color-greyish-white">take test</p>
         </div>
         {/* <div className="line center-vert">
           <p className="marg-zero color-green mright-half">login:</p>
           <p className="marg-zero color-greyish-white">to log in</p>
         </div> */}
         <div className="line center-vert mbot-one">
-          <p className="marg-zero color-green mright-half">{'ls result: '}</p>
-          <p className="marg-zero color-greyish-white">to see the result</p>
+          <p className="marg-zero color-green mright-half">view result</p>
+          <p className="marg-zero color-greyish-white">see the result</p>
         </div>
       </div>
     );
@@ -229,9 +317,12 @@ class Console extends Component {
   // redirect to quiz page
 
   listQuiz = () => {
+    this.handleContent('random');
     if(localStorage.getItem('token')) {
-      window.open('/selectDomain', '_blank');
-      window.focus();
+      setTimeout(() => {
+        window.open('/home', '_blank');
+        window.focus();
+      }, 1000);     
     }
     else {
       this.showResponse('warning', 'Please login to continue with quiz');
@@ -254,6 +345,17 @@ class Console extends Component {
     }
     else {
       this.showResponse('warning', 'You are already logged out!');
+    }
+  }
+
+  //view result
+
+  viewResult = () => {
+    if(localStorage.getItem('token')) {
+      this.showResponse('warning', 'You are not evaluated yet! Stay tuned.');
+    }
+    else {
+      this.showResponse('warning', 'You are not logged in. Please login to continue');
     }
   }
 
@@ -298,7 +400,7 @@ class Console extends Component {
         case 'clear':
           this.clear();
           break;
-        case 'ls quiz':
+        case 'attempt test':
           this.listQuiz();
           break;
         case 'login':
@@ -313,6 +415,18 @@ class Console extends Component {
         case 'logout':
           this.logout();
           break;
+        case 'forgot password':
+        if(localStorage.getItem('token')) {
+          this.showResponse('warning', 'You need to logout before resetting the password!!')
+        }
+        else {
+          this.setState({recoveryInProgress: true});
+          this.enterEmail();
+        }
+          break;
+        case 'view result':
+          this.viewResult();
+          break;  
         default:
           if(this.state.typePass) {
             this.postData();
@@ -321,12 +435,24 @@ class Console extends Component {
             this.login('pass');
             this.setState({typePass: true});
           }
+          else if(this.state.recoveryInProgress) {
+            this.recoverAccount();
+          }
           else {
-            allLines.push(currentLine);
-            this.setState({ allLines: allLines});
             if(content==='random') {
+              allLines.push(currentLine);
+              this.setState({ allLines: allLines});
               stack.pop(); 
               this.setState({stack: stack, counter: stack.length});
+            }
+            else {
+              if(content==='') {
+                allLines.push(currentLine);
+                this.setState({ allLines: allLines});
+              }
+              else {
+                this.showResponse('warning', 'Command does not exist');
+              }
             }
           }
           break;
@@ -358,18 +484,11 @@ class Console extends Component {
           contentEditable={true}
           spellCheck={false}
           onKeyDown={this.keyPressed}
-          // onKeyUp={this.showPass}
-          // onChange={this.showPass}
           type="password"
-          className="password outline-black color-green line-text line"
+          className="password flex-wrap outline-black color-green line-text line"
         ></p>
       </div>
     );
-    // if(localStorage.getItem('token')) {
-    //   this.setState({typeLogin: false, typeReg: false, typePass: false});
-    //   this.showResponse('warning','You are already logged in!');
-    // }
-    // else {
       if(type==='reg') {
         allLines.push(regLine);
       }
@@ -378,6 +497,23 @@ class Console extends Component {
       }
       this.setState({ allLines: allLines});
     // }
+  }
+  enterEmail = () => {
+    let allLines = this.state.allLines;
+    let emailLine = (
+      <div id="line" className="flex-wrap center-vert">
+        <p className="line color-greyish-white">> Enter your registred email: </p>
+        <p
+          id="active"
+          contentEditable={true}
+          spellCheck={false}
+          onKeyDown={this.keyPressed}
+          className="regno outline-black color-green line-text line"
+        > </p>
+      </div>
+    );
+    allLines.push(emailLine);
+    this.setState({allLines: allLines});
   }
 
   showPass = event => {
@@ -468,7 +604,7 @@ class Console extends Component {
   }
   render() {
     let allLines = this.state.allLines;
-    console.log(localStorage.getItem('regno'));
+    // console.log(localStorage.getItem('regno'));
     return (
       <div className="">
         {/* <div>

@@ -28,7 +28,7 @@ const Intro = () => {
                             <p>Technical</p>
                             <p>Management</p>
                             <p>Design</p>
-                            <p>Research</p>
+                            <p>Competitive</p>
                         </div>
                     </div>
                     {/* <div className="join-btn-div"> */}

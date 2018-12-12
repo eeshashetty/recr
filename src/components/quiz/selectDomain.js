@@ -7,6 +7,7 @@ import terms from '../../images/terms.svg';
 import { Button } from '@material-ui/core';
 import urls from '../common/urls';
 import Snackbar from '@material-ui/core/Snackbar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 
 const BASE_URL = urls.BASE_URL;
@@ -26,7 +27,8 @@ class SelectDomain extends Component {
             msgSnackbar: '',
             techSubmitted: true,
             mgtSubmitted: true,
-            designSubmitted: true
+            designSubmitted: true,
+            loading: true
         }
         this.getDepartments();
     }
@@ -43,7 +45,8 @@ class SelectDomain extends Component {
         axios.get(`${BASE_URL}/api/user/attempts`,config)
         .then(res => {
             let data = res.data;
-            console.log(data);
+            // console.log(data);
+            this.setState({loading: false});
             if(data.success) {
                 let name = localStorage.getItem('name');
                 this.setState({techSubmitted: false, 
@@ -74,7 +77,7 @@ class SelectDomain extends Component {
                 name = name.trim();
                 name = name.split(" ")[0];
                 this.setState({openSuccessSnackbar: true, 
-                    msgSnackbar:`Welcome ${name} ! Please choose a domain to procceed...`
+                    msgSnackbar:`Hi ${name}. Please select a domain to procceed...`
                 });
                 
             }
@@ -83,7 +86,7 @@ class SelectDomain extends Component {
             }
         })
         .catch(err=> {
-            this.setState({openErrorSnackbar: true, 
+            this.setState({openErrorSnackbar: true, loading: false,
                 msgSnackbar: `Could not get your attempts. 
                 Please check your internet connection and try again.`});
         });
@@ -111,16 +114,29 @@ class SelectDomain extends Component {
                     <div className="instruction">
                         <p className="f-bold">For the Technical department,</p>
                         <p>The first round will be on 12th and 13th of December. The round will be online. You can appear for the round at any time during these dates.</p>
-                        <p>The second round will be domain specific, task-based round. It is going to be conducted 15th and 16th of December. This round will also be online.</p>
-                        <p>The third and final round will be a personal interview and is going to be conducted on 17th and 18th of December.</p>
+                        <p>The second round will be domain specific, task-based round. It is going to be conducted <b>15th and 16th of December</b>. This round will also be online.</p>
+                        <p>The third and final round will be a personal interview and is going to be conducted on <b>17th and 18th of December</b>.</p>
 
                         <p className="f-bold">For the Management and Design department,</p>
-                        <p>The first round will be an online application round. It is going to be conducted on 12th and 13th December. It will be an online round.</p>
-                        <p>The second round will be a personal interview. It is going to be conducted on 17th and 18th of December.</p>
-                        <p>Best of Luck !!</p>
+                        <p>The first round will be an online application round. It is going to be conducted on <b>12th and 13th December</b>.
+                         It will be an online round.</p>
+                        <p>The second round will be a personal interview. It is going to be conducted on <b>17th and 18th of December</b>.</p>
+                        <p className="f-bold mtop-one marg-zero">General Instructions:</p>
+                        <p>Participants are allowed to apply for more than one domain.</p>
+                        <p>You can save your responses and continue the test later on until <b>23:59 on 13th December</b>.</p>
+                        <p>You can edit your saved responses.</p>
+                        <p>Once you submit your test, you cannot edit any responses.</p>
+                        <p>If you forget to submit before the deadline, your last saved response will be considered for evaluation.</p>
+                        <p>It is not mandatory to answer all the questions. </p>
+                        <p className="mtop-one"><b>Technical: </b></p>
+                        <b>Note:</b> you can look up answers on the internet but make sure to be thorough with the answered topics. 
+                        Questions related to these topics will be asked during the interview round.
+                        <p className="mtop-one color-blue f-bold">Best of Luck !!</p>
 
                         <p className="f-bold">Choose your domain: </p>
                     </div>
+                    {this.state.loading? 
+                    <CircularProgress className="color-theme" size={48}/>:
                     <form onSubmit={this.domainSelected}>
                         <RadioGroup
                         aria-label="domain"
@@ -155,7 +171,7 @@ class SelectDomain extends Component {
                             />
                         </RadioGroup>
                         <Button className="join-btn" type="submit">BEGIN</Button>
-                    </form>
+                    </form>}
                     </Grid>
                     <Grid item lg={7} md={6} sm={12} xs={12} className="terms-img-grid">
                     {/* <FormLabel component="legend">Gender</FormLabel> */}

@@ -1,0 +1,551 @@
+/* poppins-regular - latin */
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/poppins-v5-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local("Poppins Regular"), local("Poppins-Regular"),
+    url("../fonts/poppins-v5-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../fonts/poppins-v5-latin-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../fonts/poppins-v5-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../fonts/poppins-v5-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../fonts/poppins-v5-latin-regular.svg#Poppins") format("svg"); /* Legacy iOS */
+}
+html {
+  overflow-x: hidden;
+}
+html,
+body {
+  margin: 0px;
+  font-family: "Poppins", sans-serif;
+  /* max-width: 100% !important; */
+}
+/* div,p,img{
+    -webkit-transition: top 0.9s ease-in-out !important;
+    transition: top 0.9s ease-in-out !important;
+} */
+/* landing */
+input,div,span,label,h1,h2,h3,h4,h5,h6 {
+  font-family: "Poppins", sans-serif !important;
+}
+.landing {
+  background-color: #7926f6;
+  padding: 0px 2rem 2rem 2rem;
+  /* min-height: 900px; */
+  /* min-height: 100% !important; */
+  overflow-x: hidden;
+}
+.landing-container {
+  margin-top: 8rem !important;
+  margin-bottom: 5rem !important;
+  /* padding: 5rem !important; */
+}
+.chapter-name {
+  margin-bottom: 1rem;
+}
+.chapter-name > p {
+  font-size: 1.5rem;
+  color: #fff;
+}
+.acm-logo {
+  height: 7rem;
+  text-align: center;
+  margin-right: 1rem;
+}
+.acm-xs-logo {
+  height: 6rem;
+}
+.chapter-name-logo {
+  display: none;
+}
+.job-image {
+  max-width:80%;
+  margin-right: 5%;
+}
+.landing-container-text {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+}
+.landing-container-text > p {
+  margin: 0px;
+  text-align: center;
+}
+.domains {
+  font-size: 1.5rem;
+}
+.apply-btn {
+  background-color: #fff !important;
+  border-radius: 50px !important;
+  text-transform: none !important;
+}
+
+/* form */
+.tooltip-grid {
+  /* background-color: #fff !important; */
+  /* height: 40px !important; */
+}
+.form {
+  color: #fff !important;
+  background-color: #222227;
+  padding: 2rem;
+  overflow-x: hidden;
+}
+.helper-text {
+  color: rgb(255,255,255,0.8);
+}
+/* .MuiFormLabel-root-45 {
+  color: #fff !important;
+} */
+.recaptcha {
+  /* border: 1px solid grey; */
+  /* width: 303px; */
+  /* padding: 0 !important; */
+}
+.rc-anchor-dark {
+  background-color: grey !important;
+}
+.form-form {
+  /* width: 50%; */
+  margin: 0 auto;
+}
+.form-item {
+  border-bottom-color: #fff !important;
+}
+.regno input{
+  text-transform: uppercase !important;
+}
+.form-item input {
+  color: #fff !important;
+}
+/* input:-webkit-autofill {
+  background-color: #222227 !important;
+} */
+.form-item input[type="radio"] {
+  color: #7926f6 !important;
+}
+.form-item label {
+  color: #fff !important;
+  border-bottom-color: #fff;
+}
+.form-item label:focus {
+  color: #7926f6 !important; 
+}
+.form-item>div:before {
+  border-bottom-color: grey !important;
+}
+.form-item>div:after {
+  border-bottom-color: #7926f6 !important;
+}
+.check-box {
+  color: #fff !important;
+}
+/* .MuiInput-underline-188:before {
+  border-bottom-color: #fff !important;
+} */
+.color-white span {
+  color: #fff;
+}
+.color-white svg:focus {
+  color: #7926f6;
+}
+/* .submit-btn {
+  background-color: #fff;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+} */
+/* .submit-btn:hover {
+  background-color: #7926f6 !important; */
+  /* color: #fff !important; */
+/* } */
+.git-img {
+  width: 3rem;
+}
+.fb-logo {
+  width: 1.5rem;
+}
+.icon-send:hover {
+  color: #fff !important;
+}
+.gender-select {
+  /* width: 50%; */
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+/* footer */
+.footer-div {
+  overflow: hidden;
+  background-color: #4f4f4f;
+}
+.footer-regis {
+  width: 80%;
+  margin: 0 auto;
+  /* display: flex;
+  justify-content: space-between;*/
+  /* max-width: 100%; */
+}
+.footer-logo {
+  /* margin: 0 auto !important; */
+  text-align: center;
+  margin: 0 auto !important;
+  padding: 0px !important;
+
+}
+.acm-logo-footer {
+  margin-top: -20px !important;
+  height: 6rem !important;
+}
+
+.vit-logo-footer {
+  height: 10rem !important;
+}
+
+ /* .MuiFormLabel-focussed-46 {
+  color: #7926f6 !important;
+} */
+/* section-domain */
+.section-domain {
+  padding: 1rem 1rem 4rem 1rem;
+  overflow: hidden;
+}
+.domain-grid {
+  padding: 0px !important;
+}
+.section-domain-heading {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #7926f6;
+  font-weight: bold;
+  margin-bottom: 3em !important;
+}
+.tech-domain {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.mgt-domain {
+  width: 50%;
+}
+.design-domain {
+  width: 45%;
+}
+.domain-name {
+  margin: 0px;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+/* section-about */
+.section-about {
+  background-color: #4e4e4e;
+  padding: 1rem 1rem 1rem 1rem;
+  overflow: hidden;
+}
+.section-about-heading {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 3em !important;
+}
+.section-about-img {
+  width: 15em;
+  margin-bottom: 1.5em;
+}
+.section-about-img-acm {
+  width: 6em;
+  margin-bottom: 1.8em;
+}
+.section-about-img-acmw {
+  width: 12em;
+  margin-bottom: 1.8em;
+  margin-top: -1em;
+}
+.section-about-text {
+  /* margin: 80%; */
+  width: 80%;
+  margin: 0 auto;
+  color: #fff;
+  text-align: justify !important;
+}
+.about-grid {
+  width: 90% !important;
+  margin: 0 auto !important;
+}
+.acm-tagline {
+  font-size: 2rem;
+  font-weight: bold;
+}
+/* general */
+.container {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.marg-auto {
+  margin: 0 auto !important;
+}
+
+.color-theme {
+  color: #7926f6 !important;
+}
+.color-grey {
+  color: #9e9e9e !important;
+}
+.color-black {
+  color: #1e1e1e !important;
+}
+.color-white {
+  color: #fff !important;
+}
+.c-align {
+  text-align: center;
+}
+.center-vert-hor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.f-bold {
+  font-size: 3rem;
+  font-weight: bold;
+}
+.f-bolden {
+  font-size: 2.5rem !important;
+}
+.f-width {
+  width: 100% !important;
+}
+.flex-box {
+  display: flex;
+}
+.mtop-half {
+  margin-top: .5rem !important;
+}
+.mtop-one {
+  margin-top: 1rem !important;
+}
+.mtop-two {
+  margin-top: 2rem !important;
+}
+.mtop-four {
+  margin-top: 5rem !important;
+}
+.mright-one {
+  margin-right: 1rem !important;
+}
+.mright-two {
+  margin-right: 2rem !important;
+}
+.mright-half {
+  margin-right: 1rem;
+}
+.mleft-half {
+  margin-left: .5rem !important;
+}
+.social-links-sm {
+    display: none;
+    margin: 0px !important;
+    margin-top: -2rem !important;
+}
+.center-vert {
+    display: flex;
+    align-items: center;
+}
+.snackbar-error>div {
+  background-color: #ef0303 !important;
+}
+.snackbar-success>div {
+  background-color: green !important;
+}
+@media only screen and (max-width: 1800px) {
+  .f-bold {
+    /* font-size: 2rem !important; */
+  }
+  .container {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .f-bold {
+    /* font-size: 1.5rem !important; */
+  }
+  /* .container {
+    width: 90%;
+  } */
+}
+
+@media only screen and (max-width: 1400px) {
+   .container {
+       width: 70%;
+   } 
+}
+
+@media only screen and (max-width: 1200px) {
+  .f-bold {
+    font-size: 2rem !important;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+    .f-bold, .f-bolden {
+        font-size: 2rem !important;
+    }
+    .landing-container {
+      margin: 0px 0px !important;
+    }
+}
+@media only screen and (max-width: 959px) {
+  .landing-container {
+    width: 100% !important;
+  }
+  .tooltip-grid {
+    display: none !important;
+  }
+  .section-domain {
+    padding: 0px 0px 1rem 0px;
+    width: 100%;
+  }
+  .section-domain-heading, .section-about-heading {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 2em !important;
+  }
+  .domain-name {
+    font-weight: normal;
+    font-size: 1rem;
+  }
+  .tech-domain {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .mgt-domain {
+    width: 40%;
+  }
+  .design-domain {
+    width: 35%;
+  }
+  /* section-about */
+  .section-about-text {
+    text-align: justify !important;
+    font-size: 14px;
+    margin-bottom: .8em;
+  }
+  .section-about-heading {
+    margin-bottom: 1em !important;
+  }
+  .section-about-img, .section-about-img-acm {
+    width: 12em;
+    margin-bottom: 1em;
+  }
+  .section-about-img-acm {
+    width: 5em;
+  }
+  .section-about-img-acmw {
+    width: 8em;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+    .acm-logo-footer {
+      height: 5rem !important;
+    }
+    .vit-logo-footer {
+      height: 8rem !important;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+  .chapter-name>p {
+    font-size: 1.2rem;
+  }
+  .container {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+    .social-links {
+        display: none;
+    }
+    .chapter-name>p {
+      font-size: 1rem;
+    }
+    .f-bold {
+      font-size: 1.5rem !important;
+    }
+    .social-links {
+      display: none;
+  }
+  .social-links-sm {
+      display: block;
+      padding: 0px !important;
+      padding-bottom: 1rem !important;
+  }
+  .fb-logo {
+    width: 2rem !important;
+  }
+
+  .git-img {
+    width: 2rem !important;
+  }
+  .fb-logo {
+    width: 1rem !important;
+  }
+  .tech-domain {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .mgt-domain {
+    width: 40%;
+  }
+  .design-domain {
+    width: 35%;
+  }
+  .chapter-name-text {
+    /* display: none; */
+  }
+}
+@media only screen and (max-width: 500px) {
+  html, body {
+    font-size: 14px;
+  }
+  .acm-logo-footer {
+    margin-top: -10px !important;
+    height: 4rem !important;
+  }
+  .vit-logo-footer {
+    height: 6rem !important;
+  }
+  .container {
+    width: 100% !important;
+  }
+  .domains {
+    font-weight: bold !important;
+    font-size: 1.2rem !important;
+  }
+  .checkbox-text {
+    font-size: 12px;
+  }
+  .acm-logo {
+    height: 5rem;
+  }
+  .about-grid {
+    width: 100% !important;
+  }
+  .section-about {
+    padding: 0 !important;
+  }
+}

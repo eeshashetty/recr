@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+// import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -14,18 +15,21 @@ class Subjective extends Component {
     handleChange = name => event => {
         let object = {"link": "","mcq_answer": 0, 
         "answer": event.target.value, "question_id": this.props.qid};
-        
         this.setState({[name]: event.target.value});
-        this.props.onUpdateToSend(this.props.number, object);
+        this.props.onUpdateToSend(this.props.qid, object);
     }
     render() {
-        // console.log(this.state.qTitle);
+        // console.log(this.state.answer);
         return(
             <div className="subjective">
-                <p className="question-title f-bold">
-                {this.props.qTitle}</p>
+                <div className="center-vert flex-wrap">
+                    <p className="marg-zero mright-half">Q)</p>
+                    <p className="marg-zero" dangerouslySetInnerHTML={{ __html: this.props.qTitle }} />
+                </div>
                 <TextField
-                id="outlined-name"
+                multiline
+                rows="14"
+                id="outlined-multiline-flexible"
                 label="Answer"
                 className="answer"
                 value={this.state.answer}

@@ -17,7 +17,7 @@ class Question extends Component {
         value: ''
     }
     render() {
-        console.log(this.props.match.params.domain);
+        // console.log(this.props.match.params.domain);
         return(
             <div className="question">
                 <Grid container>
