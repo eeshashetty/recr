@@ -18,6 +18,7 @@ const horizontal = 'center';
 // import FormLabel from '@material-ui/core/FormLabel';
 
 class SelectDomain extends Component {
+<<<<<<< HEAD
   constructor() {
     super();
     this.state = {
@@ -32,6 +33,29 @@ class SelectDomain extends Component {
       designSubmitted: true,
       mgtSubmitted: true,
       loading: true
+=======
+    constructor() {
+        super();
+        this.state={
+            domain: '',
+            openErrorSnackbar: false,
+            openSuccessSnackbar: false,
+            msgSnackbar: '',
+            // techSubmitted: true,
+            // mgtSubmitted: true,
+            // designSubmitted: true,
+            frontendSub: true,
+            backendSub: true,
+            androidSub: true,
+            iosSub: true,
+            mlSub: true,
+            loading: true
+        }
+        this.getDepartments();
+    }
+    onClose = () => {
+        this.setState({openSuccessSnackbar: false, openErrorSnackbar: false});
+>>>>>>> add round 2
     }
     this.getDepartments();
   }
@@ -43,6 +67,7 @@ class SelectDomain extends Component {
     this.setState({ domain: event.target.value });
   };
 
+<<<<<<< HEAD
   getDepartments = () => {
     let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } };
     axios.get(`${BASE_URL}/check`, config)
@@ -80,6 +105,62 @@ class SelectDomain extends Component {
                 default:
                   break;
               }
+=======
+    getDepartments = () => {
+        let config = {headers: {'Authorization': 'Bearer '+ localStorage.getItem('token')}};
+        axios.get(`${BASE_URL}/api/user/attempts`,config)
+        .then(res => {
+            let data = res.data;
+            // console.log(data);
+            this.setState({loading: false});
+            if(data.success) {
+                let name = localStorage.getItem('name');
+                this.setState({frontendSub: false, 
+                    backendSub: false,
+                    androidSub: false,
+                    iosSub: false,
+                    mlSub: false
+                });
+                let result = data.result;
+                console.log(result);
+                let status, domain;
+                if(result && result.length>0 ) {
+                    for(let i=0; i<result.length; i++) {
+                        domain = result[i].For;
+                        // domainsAttempted.push(domain);
+                        status = result[i].attempt.submit_status;
+                        switch (domain) {
+                            case 'frontend':
+                                this.setState({frontendSub: status});
+                                break;
+                            case 'backend':
+                                this.setState({backendSub: status});
+                                break;
+                            case 'android':
+                                this.setState({androidSub: status});
+                                break;
+                            case 'ios':
+                                this.setState({iosSub: status});
+                                break;
+                            case 'ml':
+                                this.setState({mlSub: status});
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                name = name.trim();
+                name = name.split(" ")[0];
+                this.setState({openSuccessSnackbar: true, 
+                    msgSnackbar:`Congratulations ${name} for making it to round 2. 
+                    Please select a domain to proceed.`
+                });
+                
+            }
+            else {
+                this.setState({openErrorSnackbar: true, msgSnackbar: data.message});
+>>>>>>> add round 2
             }
           }
           name = name.trim();
