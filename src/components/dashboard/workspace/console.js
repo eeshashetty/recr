@@ -43,7 +43,7 @@ class Console extends Component {
       <div>
         <div id="console-heading" className="color-greyish-white c-align" >
           <pre>{acm}</pre>
-          <p id="welcome-line" className="mtop-two">{localStorage.getItem('name')?`Welcome ${localStorage.getItem('name')}`:'Welcome to ACM Recruitments'}</p>
+          <p id="welcome-line" className="mtop-two">{localStorage.getItem('name')?`Welcome ${localStorage.getItem('name')}`:'ACM Recruitments 2k18'}</p>
         </div>
         <div id="will-mount-line" className="flex-wrap">
           <div className="flex-box">
@@ -378,7 +378,7 @@ class Console extends Component {
       localStorage.removeItem('regno');
       let welcomeEl = document.getElementById('welcome-line');
       let willMountEl = document.getElementById('will-mount-line');
-      welcomeEl.textContent = `Welcome to ACM Recruitments`;
+      welcomeEl.textContent = `ACM Recruitments 2k18`;
       willMountEl.childNodes[0].classList.add('marg-auto');
       willMountEl.childNodes[0].textContent = `You are successfully logged out...`;
       this.clear();
