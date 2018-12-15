@@ -95,6 +95,10 @@ span {
 .color-black {
   color: black !important;
 }
+.color-text-blue {
+  color: rgb(33, 150, 243);
+  text-decoration: none;
+}
 
 /* property-alignment */
 .c-align {
@@ -103,8 +107,11 @@ span {
 .center-vert {
   display: flex;
   align-items: center;
+  /* align-content: center; */
+  /* word-break: break-all; */
 }
 .flex-wrap {
+  display: flex;
   flex-wrap: wrap;
 }
 .space-between {
@@ -116,6 +123,7 @@ span {
 }
 .marg-zero {
   margin: 0;
+  height: fit-content;
 }
 .mtop-half {
   margin-top: 0.5rem !important;
@@ -143,6 +151,9 @@ span {
 }
 .mleft-half {
   margin-left: 0.5rem !important;
+}
+.max-height {
+  height: fit-content;
 }
 .hide {
   display: none;
@@ -217,10 +228,31 @@ span {
     /* margin: 0 auto; */
     /* text-align: center; */
 }
+/* TIMELINE */
+.timeline {
+  /* width: 70%; */
+  margin: 0 auto;
+  /* background-color: rgba(0,0,0,.08); */
+  /* min-height: 100vh; */
+}
+.timeline>div::before {
+  background: #c2c2c2; 
+}
+.timeline>div>div>div>span {
+  box-shadow: none;
+  /* border: 4px sol */
+  box-shadow: 0 0 0 4px #ddd, inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05);
+}
+.timeline>div>div>div>div {
+  box-shadow:0 0 20px #ddd
+}
 
 /* WORKSPACE */
 .workspace {
   padding: 5rem 3rem;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
 }
 
 /* Console */

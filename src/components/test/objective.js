@@ -4,13 +4,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import { FormControl } from '@material-ui/core';
 
-let option = (
-    <FormControlLabel
-    value=""
-    control={<Radio color="primary" />}
-    label=""
-    />
-);
+// let option = (
+//     <FormControlLabel
+//     value=""
+//     control={<Radio color="primary" />}
+//     label=""
+//     />
+// );
 class Objective extends Component {
     
     state = {
@@ -85,7 +85,6 @@ class Objective extends Component {
             </div>
         );
     }
-
 }
 
 export default Objective;

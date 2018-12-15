@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import urls from '../common/urls';
@@ -225,9 +225,14 @@ class ShowQuestion extends Component {
                         <NavLink to="/home" className="color-theme">Back to Home screen</NavLink>
                     </div>
                     <div className="subjective">
-                        <p><b>Competitive:</b> Test will be held on <a href="https://hackerrank.com" target="_blank" 
-                        without rel="noopener noreferrer" className="color-theme">
-                        hackerrank.com</a> on <b>15th and 16th</b>. Stay tuned on website for updates.</p>
+                        <p>The first round will be held online for participants on <b>15th and 16th December</b>.</p>
+                        <p> The questions can be attempted at any time during these two days. </p>
+                        <p>This round is on <a href="https://www.hackerrank.com/acm-competitive" 
+                        target="_blank" rel="noopener noreferrer">https://www.hackerrank.com/acm-competitive</a></p>
+                        <p>All the participants must fill the <a href="https://goo.gl/forms/2qhqDRuIPJAtzqlu1" 
+                        target="_blank" rel="noopener noreferrer">form</a></p>
+                        <p>The participants who qualify will be eligible to enter the personal interview.
+                            The details of which will be communicated later.</p>
                     </div>
                 </div>}
                 <Snackbar

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Routes from './components/route';
 import './styles/styles.css';
+import './components/registration/styles/styles.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Routes />, document.getElementById('root'));

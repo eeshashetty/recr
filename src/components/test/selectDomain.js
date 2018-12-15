@@ -99,7 +99,7 @@ class SelectDomain extends Component {
             this.setState({openErrorSnackbar: true, msgSnackbar: 'Please select a domain a continue'});
         }
         else {
-            this.props.history.push(`/quiz/${this.state.domain}`);
+            this.props.history.push(`/test/${this.state.domain}`);
         }
     }
 
@@ -113,7 +113,7 @@ class SelectDomain extends Component {
                     </div>
                     <div className="instruction">
                         <p className="f-bold">For the Technical department,</p>
-                        <p>The first round will be on 12th and 13th of December. The round will be online. You can appear for the round at any time during these dates.</p>
+                        <p>The first round will be on <b>12th and 13th of December</b>. The round will be online. You can appear for the round at any time during these dates.</p>
                         <p>The second round will be domain specific, task-based round. It is going to be conducted <b>15th and 16th of December</b>. This round will also be online.</p>
                         <p>The third and final round will be a personal interview and is going to be conducted on <b>17th and 18th of December</b>.</p>
 
@@ -180,7 +180,7 @@ class SelectDomain extends Component {
                     </Grid>
                     <Grid item lg={7} md={6} sm={12} xs={12} className="terms-img-grid">
                     {/* <FormLabel component="legend">Gender</FormLabel> */}
-                        <img src={terms} className="terms-img"/>
+                        <img src={terms} alt="ACM-VIT" className="terms-img"/>
                     </Grid>
                 </Grid>
                 <Snackbar
