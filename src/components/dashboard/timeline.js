@@ -14,6 +14,30 @@ import { Link } from 'react-router-dom';
 
 const TimeLine = () => {
   return (
+<<<<<<< HEAD
+=======
+    // <div className="timeline">
+    //     <Timeline>
+    //         <TimelineEvent className="timeline-event" 
+    //             title="First Round of Recruitments"
+    //             createdAt="12-13 December"
+    //             icon={<i className="material-icons md-18">textsms</i>}
+    //         >
+    //             I received the payment for $543. Should be shipping the item within a couple of hours.
+    //         </TimelineEvent>
+    //         <TimelineEvent
+    //             className="timeline-event"
+    //             title="You sent an email to John Doe"
+    //             createdAt="2016-09-11 09:06 AM"
+    //             icon={<i className="material-icons md-18">email</i>}
+    //         >
+    //             Like we talked, you said that you would share the shipment details? This is an urgent order and so I
+    //                 am losing patience. Can you expedite the process and pls do share the details asap. Consider this a
+    //                 gentle reminder if you are on track already!
+    //         </TimelineEvent>
+    //     </Timeline>
+    // </div>
+>>>>>>> initiate 19
     <div className="timeline center-vert">
       <VerticalTimeline>
         <VerticalTimelineElement
@@ -27,7 +51,12 @@ const TimeLine = () => {
           <p>
             You can appear for the round at any time during these dates.
             Except Competitive, test for all the domains will be
+<<<<<<< HEAD
             on <Link className="color-text-blue" to="/">recruitment.acmvit.in</Link> from 6th December, 10am</p><br />
+=======
+            on <Link className="color-text-blue" to="/">recruitment.acmvit.in</Link> from 5th December,
+            evening 5pm</p><br />
+>>>>>>> initiate 19
           <h4 className="vertical-timeline-element-subtitle">Competitive</h4>
           <p>The test will be held
                 on <a className="color-text-blue" href="https://www.hackerrank.com/acmvit-cpr20">hackerrank</a> from 6th December, 3PM,
