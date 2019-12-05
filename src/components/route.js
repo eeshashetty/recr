@@ -13,12 +13,12 @@ class Routes extends Component {
         <Switch>
           <Route path="/" component={Dashboard}  exact/>
           {/* <Route path="/registration" component={Registration} exact/> */}
-          {localStorage.getItem('token') && 
-            <div>
+          {/* {localStorage.getItem('token') &&  */}
+            {/* <div> */}
               <Route path="/home" component={SelectDomain} exact/>
               <Route path="/test/:domain" component={ShowQuestion} />
-            </div>          
-          }
+            {/* </div>           */}
+          {/* } */}
           <Route component={Error}/>
         </Switch>
       </BrowserRouter>

@@ -194,7 +194,7 @@ class Console extends Component {
       </div>
     );
     
-    axios.post(BASE_URL + '/api/user/login', data, 
+    axios.post(BASE_URL + '/login', data, 
     {headers: {'Content-Type' : 'application/json'}})
     .then(response => {
         let data = response.data;
