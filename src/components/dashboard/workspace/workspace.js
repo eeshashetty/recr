@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Console from './console';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 import acm from '../../../images/acm-logo.svg'
 
 class Workspace extends Component {
@@ -21,14 +21,14 @@ class Workspace extends Component {
                                 <p className="marg-zero">and work your way through.</p>
                                 <p className="marg-zero">It's quite easy!</p>
                             </div>
-                            {/* {!localStorage.getItem('token') && 
+                            {!localStorage.getItem('token') && 
                                 <div>
                                     <p>Haven't registered yet? <b>Register now</b></p>
                                     <Button href="/registration" className="join-btn register-btn mtop-one">
                                         Register
                                     </Button>
                                 </div>
-                            } */}
+                            }
                         </div>
                     </Grid>
                     <Grid id="section-console" item lg={6} md={6} sm={12} xs={12}>
@@ -46,14 +46,14 @@ class Workspace extends Component {
                                 <p className="marg-zero">and work your way through.</p>
                                 <p className="marg-zero">It's quite easy!</p>
                             </div>
-                            {/* {!localStorage.getItem('token') && 
+                            {!localStorage.getItem('token') && 
                                 <div>
                                     <p>Haven't registered yet? <b>Register now</b></p>
                                     <Button href="/registration" className="join-btn register-btn mtop-one">
                                         Register
                                     </Button>
                                 </div>
-                            } */}
+                            }
                             <img className="" src={acm} alt="ACM"/>
                         </div>
                     </Grid>

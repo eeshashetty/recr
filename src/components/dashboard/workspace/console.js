@@ -17,6 +17,7 @@ d88P     888  "Y8888P"  888       888
 `
 
 const BASE_URL = urls.BASE_URL;
+const FORGOT_PASSWORD_URL = urls.FORGOT_PASSWORD_URL;
 
 class Console extends Component {
   state = {
@@ -289,12 +290,12 @@ class Console extends Component {
     data = JSON.stringify(data);
     stack.pop();
     this.setState({stack: stack, counter: stack.length});
-    axios.post(`${BASE_URL}/api/user/forgotpassword`,data, 
+    axios.post(`${FORGOT_PASSWORD_URL}/forget`,data, 
     {headers: {'Content-Type' : 'application/json'}})
     .then(response=> {
       let data = response.data;
         if(data.success) {
-          this.showResponse('success', data.message);
+          this.showResponse('success', 'An email has been sent to your registered E-mail ID.');
         }
         else {
           this.showResponse('error' , data.message);
@@ -445,11 +446,13 @@ class Console extends Component {
           break;
         case 'forgot password':
         if(localStorage.getItem('token')) {
-          this.showResponse('warning', 'You need to logout before resetting the password!!')
+          // this.showResponse('warning', 'You need to logout before resetting the password!!')
+          this.showResponse('warning', 'This feature is not available now, but will be available soon!!');
         }
         else {
-          this.setState({recoveryInProgress: true});
-          this.enterEmail();
+          // this.setState({recoveryInProgress: true});
+          // this.enterEmail();
+          this.showResponse('warning', 'This feature is not available now, but will be available soon!!');
         }
           break;
         case 'view result':
@@ -492,25 +495,26 @@ class Console extends Component {
 
   viewResult = () => {
     if(localStorage.getItem('token')) {
-      let allLines = this.state.allLines;
-      let loadingLine = (
-        <div id="loading" className="center-vert">
-          <div className="center-vert">
-            <p className="line color-greyish-white">Please wait...</p>
-          </div>
-          <p
-            id="active"
-            name="loading"
-            contentEditable={true}
-            spellCheck={false}
-            onKeyDown={this.keyPressed}
-            className="outline-black color-green line-text line"
-          > </p>
-        </div>
-      );
-      allLines.push(loadingLine);
-      this.getResult();
-      this.setState({allLines: allLines});
+      // let allLines = this.state.allLines;
+      // let loadingLine = (
+      //   <div id="loading" className="center-vert">
+      //     <div className="center-vert">
+      //       <p className="line color-greyish-white">Please wait...</p>
+      //     </div>
+      //     <p
+      //       id="active"
+      //       name="loading"
+      //       contentEditable={true}
+      //       spellCheck={false}
+      //       onKeyDown={this.keyPressed}
+      //       className="outline-black color-green line-text line"
+      //     > </p>
+      //   </div>
+      // );
+      // allLines.push(loadingLine);
+      // this.getResult();
+      // this.setState({allLines: allLines});
+      this.showResponse('warning', 'Results are not declared yet');
     }
     else {
       this.showResponse('warning', 'You are not logged in. Please login to continue');
@@ -561,7 +565,7 @@ class Console extends Component {
     .catch(()=> {
       this.showResponse('error', 
         'Could not get your result. Please check your internet connection and try again');
-    })
+    });
   }
 
 

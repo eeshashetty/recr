@@ -10,19 +10,22 @@ import Button from '@material-ui/core/Button';
 // import Send from '../img/send.svg';
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
-import Checkbox from '@material-ui/core/Checkbox';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Send from '@material-ui/icons/Send';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // import { ReCaptcha } from 'react-recaptcha-google';
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const vertical = 'top';
 const horizontal = 'center';
-const BASE_URL ='https://evening-beyond-53095.herokuapp.com';
+const BASE_URL ='https://gentle-refuge-82824.herokuapp.com';
+// const BASE_URL ='https://evening-beyond-53095.herokuapp.com';
 // const BASE_URL = 'https://floating-lake-76261.herokuapp.com'
 const regRegex=new RegExp('^1[0-9]{1}[A-Z]{3}[0-9]{4}$');
+const regRegexFirstYear = new RegExp('^1[9]{1}[A-Z]{3}[0-9]{4}$');
 const regPhone=new RegExp('^[1-9]{1}[0-9]{9}$');
-const regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+// const regEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const regEmail = /^[a-zA-Z]+\.[a-zA-Z]*201[0-9][a-zA-Z]?@vitstudent.ac.in$/;
 
 class Form extends Component {
     state = {
@@ -87,31 +90,36 @@ class Form extends Component {
                 });
             });
         });
-        this.recaptcha.reset();
+        // this.recaptcha.reset();
     }
 
     sendData = (e) => {
         e.preventDefault();
         let name = this.state.name;
-        let reg = this.state.reg;
-        let email = this.state.email;
-        let phone = this.state.phone;
+        let reg = this.state.reg.trim();
+        let email = this.state.email.trim();
+        let phone = this.state.phone.trim();
         let password = this.state.password;
-        let gender = this.state.gender;
-        let acmw = this.state.acmw;
-        let recaptcha = this.state.recaptcha;
+        let gender = this.state.gender.trim();
+        // let acmw = this.state.acmw;
+        // let recaptcha = this.state.recaptcha;
         let data = {'gender':gender, 'email': email, 
-        'name': name, 'regno': reg, 'password': password, 
-        'phone': phone, 'acmw': acmw, 'recaptcha': recaptcha};
+        'name': name, 'Rnumber': reg, 'password': password, 
+        'phone_number': phone };
         data = JSON.stringify(data);
+        // console.log(data);
         if(name === ''){
             this.setState({openErrorSnackbar: true, msgSnackbar: 'Name field should not be blank'});
         }
         else if(reg==='' || !regRegex.test(reg.trim())) {
             this.setState({openErrorSnackbar: true, msgSnackbar: 'Registration number is not a valid VIT registration number'});
         }
+        else if(reg==='' || !regRegexFirstYear.test(reg.trim())) {
+            this.setState({openErrorSnackbar: true, msgSnackbar: 'Sorry, We are accepting only first years.'});
+        }
+        
         else if(email==='' || !regEmail.test(email.trim())) {
-            this.setState({openErrorSnackbar: true, msgSnackbar: 'Please enter a valid Email address'});
+            this.setState({openErrorSnackbar: true, msgSnackbar: 'Please enter a valid VIT Email address'});
         }
         else if(password.length<8) {
             this.setState({openErrorSnackbar: true, msgSnackbar: 'Password should be minimum 8 characters'});
@@ -122,32 +130,43 @@ class Form extends Component {
         else if(phone==='' || !regPhone.test(phone.trim())) {
             this.setState({openErrorSnackbar: true, msgSnackbar: 'Please enter a valid phone number'});
         }
-        else if(recaptcha==='') {
-            this.setState({openErrorSnackbar: true, msgSnackbar: 'Please select the recaptcha to continue'});
-        }
+        // else if(recaptcha==='') {
+        //     this.setState({openErrorSnackbar: true, msgSnackbar: 'Please select the recaptcha to continue'});
+        // }
+        // console.log(regEmail)
         else if(name && reg && email && phone && (password.length>=8) && 
-        gender && regEmail.test(email) && regPhone.test(phone) && regRegex.test(reg)) {
+        gender && regEmail.test(email.trim()) && regPhone.test(phone.trim()) && regRegex.test(reg.trim())) {
             
             this.setState({loading: true});
 
-            axios.post(BASE_URL + '/api/user/signup', data, 
+            axios.post(BASE_URL + '/api/user/register', data, 
             {headers: {'Content-Type' : 'application/json'}})
             .then(function(response) {
                 let data = response.data;
-                if(data.success) {
+                console.log(data);
+                if(data.status==="success") {
                     this.setState({openSuccessSnackbar: true, msgSnackbar: `Congratulations you are successfully registered. 
                     We'll be in touch with you shortly.`, loading: false, name: '', reg: '', email: '', password: '', phone: '', gender: ''});
                 }
-                else {
-                    this.setState({openErrorSnackbar: true, msgSnackbar: data.message, loading: false});
-                }
-                this.recaptcha.reset();
+                // else {
+                //     this.setState({openErrorSnackbar: true, msgSnackbar: data.message, loading: false});
+                // }
+                // this.recaptcha.reset();
             }.bind(this))
             .catch(function(error) {
-                this.setState({openErrorSnackbar: true, 
-                    msgSnackbar: 'Could not register. Please check your internet connection and try again', loading: false});
+                console.log(error.response.status,error.response)
+                if(error.response.status==404) {
+                    this.setState({openErrorSnackbar: true, 
+                        msgSnackbar: 'You are already registered. Please wait for first round of recruitments.', loading: false});    
+                }
+                else{
+                    this.setState({openErrorSnackbar: true, 
+                        msgSnackbar: 'Could not register. Please check your internet connection and try again', loading: false});
+                }
             }.bind(this));
         }
+        // console.log(regEmail.test(email.trim()));
+        // console.log(regEmail.test(email));
     }
 
     render() {
@@ -240,7 +259,7 @@ class Form extends Component {
                                     {/* </div> */}
                                 </RadioGroup>
                         </Grid>
-                        <div className="center-vert">
+                        {/* <div className="center-vert">
                         <Checkbox
                             checked={this.state.acmw}
                             onChange={this.handleChecked('acmw')}
@@ -248,9 +267,9 @@ class Form extends Component {
                             className="check-box"
                             />
                         <p className="checkbox-text">I would like to be a part of ACM-W Community group on facebook</p>
-                        </div>
+                        </div> */}
                     </Grid>
-                    <div className="mtop-one">
+                    {/* <div className="mtop-one">
                         <ReCAPTCHA
                             ref={(r) => this.recaptcha = r}
                             sitekey="6LebVH8UAAAAAFag4ioneV5GVWZwIbPcIPfP15Z2"
@@ -258,7 +277,7 @@ class Form extends Component {
                             onChange={this.onChange}
                             onExpired={this.onExpired}
                         />
-						</div>
+						</div> */}
                     <div className="c-align mtop-two">
                     {!this.state.loading && 
                         <Button className="apply-btn submit-btn" type="submit">

@@ -48,16 +48,17 @@ html, body {
   font-family: "Poppins", sans-serif;
 }
 
-span, pre, code {
+span, code {
   font-family: "Poppins", sans-serif !important;
 }
 
-pre {
+pre.question {
   white-space: pre-wrap;
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
   word-wrap: break-word;
+  font-family: "Poppins", sans-serif !important;
 }
 
 /* GENERAL */

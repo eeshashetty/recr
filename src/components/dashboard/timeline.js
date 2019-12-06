@@ -27,8 +27,7 @@ const TimeLine = () => {
           <p>
             You can appear for the round at any time during these dates.
             Except Competitive, test for all the domains will be
-            on <Link className="color-text-blue" to="/">recruitment.acmvit.in</Link> from 5th December,
-            evening 5pm</p><br />
+            on <Link className="color-text-blue" to="/">recruitment.acmvit.in</Link> from 6th December, 10am</p><br />
           <h4 className="vertical-timeline-element-subtitle">Competitive</h4>
           <p>The test will be held
                 on <a className="color-text-blue" href="https://www.hackerrank.com/acmvit-cpr20">hackerrank</a> from 6th December, 3PM,

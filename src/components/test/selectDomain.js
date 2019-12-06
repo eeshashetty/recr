@@ -124,13 +124,13 @@ class SelectDomain extends Component {
             <div className="instruction">
               <p className="f-bold">For all departments (except Competitive)</p>
               <ul>
-                <li>The first round will be on <b>5th and 6th of December</b>. The round will be online. You can appear for the round at any time during these dates.</li>
+                <li>The first round will be on <b>6th and 7th of December</b>. The round will be online. You can appear for the round at any time during these dates.</li>
                 <li>The second round will be offline, the details of which will be informed.</li>
                 <li>The third and final round will be personal interview.</li>
               </ul>
               <p className="f-bold">For Competitive department,</p>
               <ul>
-                <li>The first round will be on <b>6th and 7th of December</b>. The round will be online. You can appear for the round at any time during these dates.</li>
+                <li>The first round will be on <b>6th and 7th of December</b>. The round will be online and will be on hackerrank for 24hrs.</li>
                 <li>The second and final round will be personal interview.</li>
               </ul>
               <p className="f-bold mtop-one marg-zero">General Instructions:</p>
@@ -141,7 +141,7 @@ class SelectDomain extends Component {
                 <li>Once you submit your test, you <b>cannot</b> edit any responses.</li>
                 <li>If you forget to submit before the deadline, your last saved response will be considered for evaluation.</li>
               </ul>
-              <p className="marg-zero"><b><u>Technical & Management:</u></b></p>
+              <p className="marg-zero"><b><u>Technical & Design:</u></b></p>
               <p className="marg-zero mbot-one mtop-half">
                 {/* It is <b>not</b> mandatory to answer all the questions. </p> */}
                 <ul>
@@ -149,19 +149,20 @@ class SelectDomain extends Component {
                   <li>You are <b>allowed</b> to attempt for more than one domains.</li>
                   <li><b>Feel free</b> to take help from <b>Google</b> or other resources on internet or elsewhere.</li>
                   {/* <li>Try to answer as many questions as possible.</li> */}
-                  <li>It is <b>not</b> mandatory to answer all the questions. But answering more questions increase your chances of selection,
+                  <li style={{color: '#ff0000'}}>It is <b>not</b> mandatory to answer all the questions. But answering more questions increase your chances of selection,
                   and will benefit you in subsequent rounds.</li>
                   {/* <li>You are free to participate in </li> */}
                   {/* <li>Remember you're all first yea</li> */}
                 </ul>
               </p>
-              <p className="marg-zero"><b><u>Design:</u></b></p>
+              <p className="marg-zero"><b><u>Management:</u></b></p>
               <p className="marg-zero mbot-one mtop-half">
-                <b>At least one</b> task is mandatory. Others are optional.</p>
+                It is <b>mandatory</b> to attempt <b>all</b> the questions
+              </p>
               {/* <p className="mtop-one"><b>Technical: </b></p> */}
-              <b><u>Note:</u></b> you can look up answers on the internet but make sure to be thorough with the answered topics.
-              Questions related to these topics will be asked during the interview round.
-                        <p className="mtop-one color-blue f-bold">Best of Luck !!</p>
+              <b><u>Note:</u></b> Remember some questions have been knowingly set hard to test your persistence and determination.
+              So keep digging ;)
+              <p className="mtop-one color-blue f-bold">Best of Luck !!</p>
 
               <p className="f-bold">Choose your domain: </p>
             </div>

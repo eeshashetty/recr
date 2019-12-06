@@ -31,7 +31,7 @@ class Subjective extends Component {
       <div className="subjective">
         <div className="center-vert flex-wrap">
           {/* <span className="marg-zero mright-half">Q)</span> */}
-          <span className="marg-zero"><pre><code><b>Q)</b></code> &nbsp;{this.props.qTitle}</pre></span>
+          <span className="marg-zero"><pre className="question"><code><b>Q)</b></code> &nbsp;{this.props.qTitle}</pre></span>
         </div>
         <TextField
           multiline

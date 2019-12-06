@@ -53,14 +53,14 @@ class ShowQuestion extends Component {
             let toSendResp = {};
             if (!data.submitted_status) {
               for (let i = 0; i < attempt.length; i++) {
-                let {response, id} = attempt[i];
-                
+                let { response, id } = attempt[i];
+
                 // let { response, id } = question;
                 // console.log(que);
                 // toSendResp.push({
                 //   id: response
                 // });
-                toSendResp[id] = response?response:"";
+                toSendResp[id] = response ? response : "";
               }
               this.setState({ questions: attempt, toSendResp: toSendResp });
             }
@@ -102,14 +102,14 @@ class ShowQuestion extends Component {
     // console.log(toSendArr[i].answer);
     // }
     // console.log(toSendResp);
-    this.setState({toSendResp: toSendResp});
+    this.setState({ toSendResp: toSendResp });
   }
 
   saveResponse = () => {
     // console.log(this.state.toSendArr);
     let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } };
     let { toSendResp } = this.state;
-    let data = { "response": toSendResp, "domain": this.props.match.params.domain};
+    let data = { "response": toSendResp, "domain": this.props.match.params.domain };
     // data = JSON.stringify(data);
     axios.post(BASE_URL + '/save', data, config)
       .then(resp => {
@@ -134,14 +134,15 @@ class ShowQuestion extends Component {
 
     let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } };
     let { toSendResp } = this.state;
-    let data = { "response": toSendResp, "domain": this.props.match.params.domain};
+    let data = { "response": toSendResp, "domain": this.props.match.params.domain };
     // data = JSON.stringify(data);
     axios.post(BASE_URL + '/submit', data, config)
       .then(resp => {
         let data = resp.data;
         // console.log(data);
         if (data.success) {
-          this.setState({ openSuccessSnackbar: true, msgSnackbar: "Response successfully recorded!!" });
+          this.setState({ openSuccessSnackbar: true, 
+            msgSnackbar: "Thank you for taking test. Your responses have been successfully recorded!!" });
           setTimeout(() => { this.props.history.push('/home') }, 3000);
         }
         else {
@@ -158,7 +159,8 @@ class ShowQuestion extends Component {
 
   render() {
 
-
+    let domain = this.props && this.props.match.params && this.props.match.params.domain;
+    // domain = domain.capitalize();
     let { questions } = this.state;
     // let question, qTitle, qid, number,
     let showQuestions = [], currQuestion;
@@ -189,8 +191,10 @@ class ShowQuestion extends Component {
             </div>) :
           (!this.state.internetIssue &&
             <div>
+              <p className="f-bold c-align marg-zero">{domain && domain.toUpperCase()}</p>
               <div className="quiz space-between center-vert">
-                <p className="f-bold">{`Welcome ${localStorage.getItem('name').split(" ")[0]}`}</p>
+                <p style={{fontSize: '1.2rem', fontWeight: 'bold'}}>
+                  {`Welcome ${localStorage.getItem('name').split(" ")[0]}`}</p>
                 <Button className="save-btn flex-wrap"
                   onClick={this.saveResponse}>Save</Button>
               </div>
