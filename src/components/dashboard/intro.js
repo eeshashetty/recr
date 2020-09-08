@@ -22,7 +22,7 @@ const Intro = () => {
               been organising and conducting successful technical and professional
               development events. Technology is its course and education is its
               objective.
-                        </p>
+            </p>
             <div>
               <p>We have openings in 4 domains:</p>
               <p>Technical</p>
@@ -34,7 +34,7 @@ const Intro = () => {
           {/* <div className="join-btn-div"> */}
           <Button href="#section-console" className="join-btn mtop-one">
             Join Now
-                        </Button>
+          </Button>
           {/* </div> */}
         </Grid>
         <Grid item lg={6} md={6} xs={12} className="img-search-grid mtop-two">

@@ -155,7 +155,7 @@ class Form extends Component {
             }.bind(this))
             .catch(function(error) {
                 console.log(error.response.status,error.response)
-                if(error.response.status==404) {
+                if(error.response.status===404) {
                     this.setState({openErrorSnackbar: true, 
                         msgSnackbar: 'You are already registered. Please wait for first round of recruitments.', loading: false});    
                 }
